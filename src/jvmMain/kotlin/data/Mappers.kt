@@ -15,7 +15,16 @@ class Mappers {
             region = response.location.region,
             country = response.location.country,
             windSpeed = response.current.windSpeed,
-            lastUpdated = response.current.lastUpdated
+            lastUpdated = response.current.lastUpdated,
+            humidity = response.current.humidity,
+            gustSpeed = response.current.gustSpeed,
+            uv = response.current.uv,
+            clouds = response.current.clouds,
+            windDirection = response.current.windDirection,
+            timeZone = response.location.tz_id,
+            precipitationInches = response.current.precipitationInches,
+            dayOfWeek = response.current.dayOfWeek
+
         )
     }
     
@@ -24,7 +33,7 @@ class Mappers {
             WeatherCard(
                 condition = forecastDay.day.condition.text,
                 iconUrl = "https:" + forecastDay.day.condition.icon,
-                temperature = forecastDay.day.avgtempC,
+                temperature = forecastDay.day.avgtempF,
                 chanceOfSnow = forecastDay.day.chanceOfSnow,
                 feelsLike = avgFeelsLike(forecastDay),
                 chanceOfRain = avgChanceOfRain(forecastDay),

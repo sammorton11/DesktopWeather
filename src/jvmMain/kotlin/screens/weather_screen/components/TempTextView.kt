@@ -16,21 +16,23 @@ import androidx.compose.ui.unit.sp
 fun TempTextView(temp: Int){
     Row(
         modifier = Modifier.fillMaxWidth()
-            .padding(start = 38.dp, end = 25.dp, top = 25.dp, bottom = 35.dp),
+            .padding(start = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = "$temp",
-            modifier = Modifier.padding(start = 10.dp, end = 5.dp),
-            style = MaterialTheme.typography.h3,
-        )
-        Text(
-            text = "°F",
-            modifier = Modifier.padding(end = 10.dp),
-            fontSize = 35.sp,
-            style = MaterialTheme.typography.caption,
-        )
+
+        Row(modifier = Modifier.padding(10.dp)) {
+            Text(
+                text = "$temp",
+                modifier = Modifier.padding(start = 5.dp),
+                style = MaterialTheme.typography.h3
+            )
+            Text(
+                text = "°F",
+                modifier = Modifier.padding(top = 5.dp),
+                style = MaterialTheme.typography.h6
+            )
+        }
 
     }
 }

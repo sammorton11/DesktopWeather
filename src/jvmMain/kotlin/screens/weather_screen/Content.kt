@@ -8,6 +8,7 @@ import androidx.compose.material.TabRowDefaults.Divider
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
 import data.WeatherResults
@@ -16,6 +17,7 @@ import screens.weather_screen.components.current_weather.CurrentWeatherCard
 import screens.weather_screen.components.current_weather.CurrentWeatherHeading
 import screens.weather_screen.components.forecast_weather.ForecastCard
 import screens.weather_screen.components.forecast_weather.ForecastHeading
+import utility.Converters.roundTemperature
 import utility.ImageDownloader
 import kotlin.math.roundToInt
 
@@ -64,7 +66,7 @@ fun Content(data: WeatherResults) {
     }
 
     Divider(
-        color = MaterialTheme.colors.primary,
+        color = Color.Companion.Cyan,
         modifier = Modifier.padding(all = 16.dp),
     )
 
@@ -84,5 +86,5 @@ fun Content(data: WeatherResults) {
 
 fun celsiusToFahrenheit(celsius: Double): Int {
     val conversion = celsius * 9 / 5 + 32
-    return conversion.roundToInt()
+    return conversion.roundTemperature()
 }

@@ -29,7 +29,24 @@ data class Current(
   @SerialName("gust_mph")
   val gustSpeed: Double,
   @SerialName("last_updated")
-  val lastUpdated: String
+  val lastUpdated: String,
+  @SerialName("precip_in")
+  val precipitationInches: Double,
+  @SerialName("is_day")
+  val dayOfWeek: Int
+
+)
+
+@Serializable
+data class Astro(
+  @SerialName("sunrise")
+  val sunrise: String,
+  @SerialName("sunset")
+  val sunset: String,
+  @SerialName("moonrise")
+  val moonrise: String,
+  @SerialName("moonset")
+  val moonset: String,
 )
 
 @Serializable
@@ -53,8 +70,8 @@ data class Forecastday(
 
 @Serializable
 data class Day(
-  @SerialName("avgtemp_c")
-  val avgtempC: Double,
+  @SerialName("avgtemp_f")
+  val avgtempF: Double,
   val condition: Condition,
   @SerialName("daily_chance_of_snow")
   val chanceOfSnow: Int
@@ -107,7 +124,10 @@ data class WeatherCard(
   val windDirection: String? = null,
   val uv: Double? = null,
   val gustSpeed: Double? = null,
-  val lastUpdated: String? = null
+  val lastUpdated: String? = null,
+  val timeZone: String? = null,
+  val precipitationInches: Double? = null,
+  val dayOfWeek: Int? = null
 )
 
 data class WeatherResults(

@@ -6,20 +6,15 @@ import viewModel.WeatherViewModel
 
 /*
     Todo:
-        - Text in text TextView is too dark
-        - data.Condition text should be in a different place
+        - Error handling - no matching location found crashes application
         - Typography
-        -
-        - Maybe pay for the pro plan to be able to have more days in the forecast
-        - Change color of Cards and rest of UI
-        - Clean up code
-        - Separate component into composable functions
-        - Good job!
+        - Format date for Updated in details card
+        - If paid subscription - horizontal scroll in forecast section
+        - Clean up the data models
  */
 
 fun main() = application {
     val presenter = WeatherViewModel()
-
     Window(
         onCloseRequest = ::exitApplication,
         title = "Kotlin Weather"

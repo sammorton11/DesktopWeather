@@ -7,6 +7,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 /*
@@ -19,7 +20,8 @@ fun WhenLoading() {
         CircularProgressIndicator(
             modifier = Modifier
                 .align(alignment = Alignment.Center)
-                .defaultMinSize(minWidth = 96.dp, minHeight = 96.dp)
+                .defaultMinSize(minWidth = 96.dp, minHeight = 96.dp),
+            color = Color.Cyan
         )
     }
 }

@@ -1,6 +1,9 @@
 package screens.weather_screen
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -23,9 +26,12 @@ import viewModel.WeatherViewModel
     WeatherScreen Composable
         - Contains a search bar and search button for searching for weather data
         - Displays loading, error, or content screens depending on the state of the weather data
+        - cityQuerySearch = empty mutable string
+        - cityQuerySearch is assigned the text from the text field when the user types
+        - Button invokes the fetchData method when clicked with the cityQuerySearch passed in as an argument
  */
 @Composable
-fun WeatherScreen(viewModel: WeatherViewModel){
+fun WeatherScreen(viewModel: WeatherViewModel) {
 
     var cityQuerySearch by remember { mutableStateOf("") }
     var weatherState by remember { mutableStateOf<ScreenState<WeatherResults>?>(null) }
@@ -47,11 +53,11 @@ fun WeatherScreen(viewModel: WeatherViewModel){
                 - Changes placeholder text color to light gray when not focused
                 - Changes label text color to light gray when not focused and yellow when focused
         */
-        TextField(
+        OutlinedTextField(
             value = cityQuerySearch,
             enabled = true,
             onValueChange = { cityQuerySearch = it },
-            modifier = Modifier.padding(16.dp).weight(2f),
+            modifier = Modifier.padding(16.dp).weight(1f),
             placeholder = {
                 Text(
                     text = "City",
@@ -59,19 +65,21 @@ fun WeatherScreen(viewModel: WeatherViewModel){
                 )},
             label = {
                 Text(
-                    text = "Search for a city",
-                    fontSize = 5.sp,
+                    text = "Search",
+                    fontSize = 10.sp,
                     fontStyle = FontStyle.Italic
                 )},
             leadingIcon = {
                 Icon(
-                    Icons.Filled.LocationOn, "data.Location"
+                    Icons.Filled.LocationOn, "Location"
                 )},
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.White,
                 placeholderColor = Color.LightGray,
                 unfocusedLabelColor = Color.LightGray,
-                focusedLabelColor = Color.Yellow
+                focusedLabelColor = Color.Cyan,
+                cursorColor = Color.Cyan,
+                focusedIndicatorColor = Color.Cyan
             )
         )
 
@@ -81,17 +89,24 @@ fun WeatherScreen(viewModel: WeatherViewModel){
                 - Launch coroutine
                 - Set state to the fetchData method in the coroutine
          */
-        Button(
+        OutlinedButton(
             onClick = {
                 weatherState = ScreenState.Loading
                 scope.launch {
                     weatherState = viewModel.fetchWeatherData(cityQuerySearch)
                 }
-            }
+            },
+            modifier = Modifier.padding(top = 8.dp),
+            border = BorderStroke(1.dp, Color.Cyan),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.DarkGray
+            ),
+            elevation = ButtonDefaults.elevation(10.dp)
         ){
-            Icon(Icons.Outlined.Search, "Search", tint = Color.White)
+            Icon(Icons.Outlined.Search, "Search", tint = Color.Cyan)
         }
     }
+
 
     /*
         When statement to display different screens depending on the state of the weather data

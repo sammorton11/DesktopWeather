@@ -38,18 +38,29 @@ fun CurrentWeatherCard(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+
             WeatherIcon(image, 100.dp, 100.dp)
             CityLocation(data)
             TempTextView(temp)
+
             Text(
                 text = data.currentWeather.condition,
                 style = MaterialTheme.typography.caption,
             )
+
             Spacer(Modifier.padding(5.dp))
-            Text(
-                text = "Feels like: ${feelsLike}°F",
-                style = MaterialTheme.typography.caption,
-            )
+
+            Row(modifier = Modifier.padding(10.dp)) {
+                Text(
+                    text = "Feels like: $feelsLike",
+                    modifier = Modifier.padding(start = 5.dp),
+                    style = MaterialTheme.typography.caption
+                )
+                Text(
+                    text = "°",
+                    style = MaterialTheme.typography.caption
+                )
+            }
         }
     }
 }

@@ -10,11 +10,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import data.WeatherResults
 import utility.Constants
+import utility.Converters.dayOfWeekConverter
 
 @Composable
 fun CurrentDetailsCard(data: WeatherResults){
     // Details card
     // Todo: Use data from models instead of fake data for testing
+
+    val currentWeather = data.currentWeather
+    val day = currentWeather.dayOfWeek?.let { dayOfWeekConverter(it) }
+
+
     Card(
         modifier = Modifier.fillMaxWidth()
             .padding(horizontal = 72.dp)
@@ -37,27 +43,28 @@ fun CurrentDetailsCard(data: WeatherResults){
                     modifier = Modifier
                         .padding(15.dp)
                 ){
+                    Text("Today:")
+                    Text("Time Zone:")
                     Text("Updated:")
-                    Text("Wind Speed:")
                     Text("Humidity:")
                     Text("UV:")
-                    Text("Gust:")
                 }
 
                 Column (
                     modifier = Modifier.padding(15.dp)
                 ){
-                    Text("${data.currentWeather.lastUpdated}")
-                    Text("${data.currentWeather.windSpeed} mph")
-                    Text("45.0%")
-                    Text("1.0")
-                    Text("15mph")
+                    Text("$day")
+                    Text("${currentWeather.timeZone}")
+                    Text("${currentWeather.lastUpdated}")
+                    Text("${currentWeather.humidity}%")
+                    Text("${currentWeather.uv}")
                 }
             }
 
 
 //                Spacer(Modifier.padding(start = 140.dp))
 
+            // Todo: this needs real data
             Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -66,21 +73,25 @@ fun CurrentDetailsCard(data: WeatherResults){
                     modifier = Modifier
                         .padding(15.dp)
                 ){
-                    Text("Test:")
-                    Text("Test Speed:")
-                    Text("Test:")
-                    Text("Test:")
-                    Text("Test:")
+                    Text("Gust:")
+                    Text("Wind Speed:")
+                    Text("Wind Direction:")
+                    Text("Clouds:")
+                    Text("Precipitation:")
+//                    Text("Test:")
+//                    Text("Test:")
                 }
 
                 Column (
                     modifier = Modifier.padding(15.dp)
                 ){
-                    Text("12/25/2022")
-                    Text("5 mph")
-                    Text("45.0%")
-                    Text("1.0")
-                    Text("15mph")
+                    Text("${currentWeather.gustSpeed} mph")
+                    Text("${currentWeather.windSpeed} mph")
+                    Text("${currentWeather.windDirection}")
+                    Text("${currentWeather.clouds}")
+                    Text("${currentWeather.precipitationInches}")
+//                    Text("1.0")
+//                    Text("15mph")
                 }
             }
 
