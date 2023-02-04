@@ -1,4 +1,4 @@
-# DesktopWeather
+# DesktopWeather - KMM Desktop
 
 Simple Weather Application using Kotlin Compose Desktop in Intellij
 
